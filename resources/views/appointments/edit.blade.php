@@ -37,7 +37,7 @@
                             <select id="doctor_id" name="doctor_id" class="block w-full px-4 py-3 border border-white/60 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 rounded-2xl bg-white/60 text-slate-700 backdrop-blur-sm transition-all shadow-sm" required>
                                 @foreach($doctors as $doctor)
                                     <option value="{{ $doctor->id }}" {{ old('doctor_id', $appointment->doctor_id) == $doctor->id ? 'selected' : '' }}>
-                                        Dr. {{ explode(' ', $doctor->user->name)[0] ?? $doctor->user->name }} ({{ $doctor->department->name ?? 'General' }})
+                                        {{ str_starts_with($doctor->user->name, 'Dr.') ? '' : 'Dr. ' }}{{ $doctor->user->name }} ({{ $doctor->department->name ?? 'General' }})
                                     </option>
                                 @endforeach
                             </select>

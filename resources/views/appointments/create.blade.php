@@ -76,7 +76,7 @@
                                     <option value="" disabled selected>-- Select a Doctor --</option>
                                     @foreach($doctors as $doctor)
                                         <option value="{{ $doctor->id }}" {{ old('doctor_id') == $doctor->id ? 'selected' : '' }}>
-                                            Dr. {{ explode(' ', $doctor->user->name)[0] ?? $doctor->user->name }} ({{ $doctor->department->name ?? 'General' }})
+                                            {{ str_starts_with($doctor->user->name, 'Dr.') ? '' : 'Dr. ' }}{{ $doctor->user->name }} ({{ $doctor->department->name ?? 'General' }})
                                         </option>
                                     @endforeach
                                 </select>
